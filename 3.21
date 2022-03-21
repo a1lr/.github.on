@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+//#define InitLise 10//顺序表
+//typedef struct {
+//	int *data;
+//	int MaxLise;
+//	int length;
+//}SeqList;
+//void InitList(SeqList& L)
+//{ 
+//	L.data = (int*)malloc(InitLise * sizeof(int));
+//	L.length = 0;
+//	L.MaxLise = InitLise;
+//}
+//void IncreaseSize(SeqList& L, int len)
+//{
+//	int* p = L.data;
+//	L.data = (int*)malloc((L.MaxLise + len) * sizeof(int));
+//	for (int i = 0; i < L.MaxLise; i++)
+//		L.data[i] = p[i];
+//	L.MaxLise = L.MaxLise + len;
+//	free(p);
+//}
+//int main()
+//{
+//	SeqList L;
+//	InitList(L);
+//	for (int i = 0; i < 13; i++)
+//		if (L.length >= L.MaxLise)
+//			IncreaseSize(L, 5);
+//		else
+//			*L.data = i;
+//	for (int i=0; i < L.MaxLise; i++)
+//	{
+//		printf("%d ", L.data[i]);
+//	}
+//	return 0;
+//}
+
+typedef struct LNode {//单链表
+	ElemType data;
+	struct Lnode* next;
+}LNode,*LinkList;
+bool InitList(LinkList& L) {
+	L = (LNode*)malloc(sizeof(LNode));
+	if (L == NULL)
+		return false;
+	L->next = NULL;
+	return true;
+}
+void test()
+{
+	LinkList L;
+	InitList(L);
+}
+int main()
+{
+	test();
+	return 0;
+}
