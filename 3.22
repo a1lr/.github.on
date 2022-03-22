@@ -1,0 +1,76 @@
+#include<stdio.h>
+//#define ElementType  int
+typedef int ElementType;
+#define MaxSize 10//定义队列中元素的最大个数
+typedef struct {
+	ElementType data[MaxSize];//用静态数组存放队列元素
+	int front, rear;//队头队尾指针
+}SqQueue;
+void InitQueue(SqQueue &Q){//初始化
+	Q.front = Q.rear = 0;
+}
+bool QueueEmpty(SqQueue Q) {
+	if (Q.front == Q.rear)//判断队空
+		return true;
+	else
+		return false;
+}
+void import(SqQueue &Q) {//输入
+	for (int i = 0; i < MaxSize; i++)
+	{
+		Q.data[Q.rear] = i;
+		if (Q.front == ((Q.rear+1)%MaxSize))
+		{
+			break;
+		}
+		Q.rear = (Q.rear + 1) % MaxSize;
+	}
+}
+bool DeQueue(SqQueue& Q,ElementType &y) {//出队
+	if (Q.rear == Q.front)//判断队空
+		return false;
+	y = Q.data[Q.front];
+	Q.front = (Q.front + 1) % MaxSize;
+	return true;
+}
+bool EnQueue(SqQueue& Q, ElementType x) {//入队
+	if ((Q.rear) % MaxSize == Q.front)//判断队满
+		return false;
+	Q.data[Q.rear] = x;
+	Q.rear = (Q.rear + 1) % MaxSize;
+	return true;
+}
+void print(SqQueue& Q) {//打印
+	for (int i = 0; i < MaxSize; i++)
+	{
+		if(Q.front+i!=Q.rear+1)
+		printf("%d ", Q.data[Q.front + i]);
+	}
+}
+void print2(SqQueue& Q)//打印
+{
+	for (int i = 0; i < MaxSize; i++)
+	{
+		if((Q.front+i)%MaxSize!=Q.rear)
+		printf("%d ", Q.data[Q.front + i]);
+	}
+}
+void testQueue() {
+	SqQueue Q;//声明队列
+	InitQueue(Q);//初始化队列
+	QueueEmpty(Q);//判空
+	import(Q);//输入
+	int y = 0;
+	DeQueue(Q,y);//删除队头元素
+	printf("%d\n", y);
+	print(Q);	//打印
+	int x = 0;
+	scanf_s("%d", &x);
+	EnQueue(Q, x);//入队
+	print2(Q);//打印
+}
+int main()
+{
+	testQueue();
+	return 0;
+}
