@@ -1,0 +1,52 @@
+//二叉树
+#include<stdio.h>
+#define MaxSize 100
+//struct TreeNode//二叉树的顺序存储
+//{
+//	int value;
+//	bool isEmpty;
+//};
+//TreeNode t[MaxSize];
+//void test()
+//{
+//	for (int i = 1; i < MaxSize; i++)
+//	{
+//		t->value = i;
+//		printf("%d ", t->value);
+//	}
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+//struct ElemType {
+//	int value;
+//};
+
+//二叉树的链式存储
+typedef struct BiTNode {
+	int data;                       //数据域      
+	struct BiTNode* lchild,* rchild;//左右孩子指针
+	struct BiTNode* parent;         //父节点指针
+}BiTNode,*BiTree;//定义空树
+BiTree root = NULL;
+void test1() {//插入根节点
+	root = (BiTree)malloc(sizeof(BiTNode));
+	root->data = { 1 };
+	root->lchild = NULL;
+	root->rchild = NULL;
+}
+void test2() {//插入新节点
+	BiTNode* p = (BiTNode*)malloc(sizeof(BiTNode));
+	p->data = { 2 };
+	p->lchild = NULL;
+	p->rchild = NULL;
+	root->lchild = p;
+}
+int main()
+{
+	test1();
+	test2();
+	return 0;
+}
